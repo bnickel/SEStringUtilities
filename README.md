@@ -21,7 +21,7 @@ let username:NSAttributedString = ...
 let creationDate:String = ...
 label.attributedText =
     NSLocalizedString("- Asked by {username} on {creationDate}", comment:"").
-    SE_attributedStringByReplacingTokensWithValues:{"username": username, "creationDate": creationDate})
+    SE_attributedStringByReplacingTokensWithValues({"username": username, "creationDate": creationDate})
 ```
 
 In these examples `username` is an attributed string using its own styling and `creationDate` is a string inheriting its styling from the parent attributed string.
