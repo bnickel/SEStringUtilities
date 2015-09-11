@@ -63,7 +63,7 @@
                 [matches addObject: subrange.location != NSNotFound ? [self substringWithRange:subrange] : @""];
             }
             
-            replacementString = block(matches, result.range.location, self);
+            replacementString = block(matches, result.range, self);
         }
         
         

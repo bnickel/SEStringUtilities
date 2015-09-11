@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * _Nonnull (^SERegularExpressionReplacementBlock)(NSArray * matches, NSUInteger offset, NSString * string);
+typedef NSString * _Nonnull (^SERegularExpressionReplacementBlock)(NSArray<NSString *> * matches, NSRange range, NSString * string);
 
 @interface NSString (SERegularExpressions)
 

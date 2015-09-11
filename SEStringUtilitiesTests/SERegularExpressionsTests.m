@@ -29,7 +29,7 @@
 
 - (void)testReplacePatternWithBlock
 {
-    NSString *string = [@"0 - A B - M N - Y Z" SE_stringByReplacingPattern:@"(\\w) (\\w)" options:0 withBlock:^NSString * _Nonnull(NSArray * _Nonnull matches, NSUInteger offset, NSString * _Nonnull string) {
+    NSString *string = [@"0 - A B - M N - Y Z" SE_stringByReplacingPattern:@"(\\w) (\\w)" options:0 withBlock:^NSString * _Nonnull(NSArray<NSString *> * _Nonnull matches, NSRange range, NSString * _Nonnull string) {
         return [NSString stringWithFormat:@"(%@ ~= %@+%@)", [matches[0] lowercaseString], matches[1], matches[2]];
     }];
     XCTAssertEqualObjects(@"0 - (a b ~= A+B) - (m n ~= M+N) - (y z ~= Y+Z)", string);
@@ -37,7 +37,7 @@
 
 - (void)testReplaceFirstOccurranceOfPatternWithBlock
 {
-    NSString *string = [@"0 - A B - M N - Y Z" SE_stringByReplacingFirstOccuranceOfPattern:@"(\\w) (\\w)" options:0 withBlock:^NSString * _Nonnull(NSArray * _Nonnull matches, NSUInteger offset, NSString * _Nonnull string) {
+    NSString *string = [@"0 - A B - M N - Y Z" SE_stringByReplacingFirstOccuranceOfPattern:@"(\\w) (\\w)" options:0 withBlock:^NSString * _Nonnull(NSArray<NSString *> * _Nonnull matches, NSRange range, NSString * _Nonnull string) {
         return [NSString stringWithFormat:@"(%@ ~= %@+%@)", [matches[0] lowercaseString], matches[1], matches[2]];
     }];
     XCTAssertEqualObjects(@"0 - (a b ~= A+B) - M N - Y Z", string);
@@ -45,7 +45,7 @@
 
 - (void)testBlockStringArgument
 {
-    NSString *string = [@"a b c" SE_stringByReplacingPattern:@"[abc]" options:0 withBlock:^NSString * _Nonnull(NSArray * _Nonnull matches, NSUInteger offset, NSString * _Nonnull string) {
+    NSString *string = [@"a b c" SE_stringByReplacingPattern:@"[abc]" options:0 withBlock:^NSString * _Nonnull(NSArray<NSString *> * _Nonnull matches, NSRange range, NSString * _Nonnull string) {
         return string;
     }];
     XCTAssertEqualObjects(@"a b c a b c a b c", string);
@@ -53,8 +53,8 @@
 
 - (void)testBlockOffsetArgument
 {
-    NSString *string = [@"a b c" SE_stringByReplacingPattern:@"[abc]" options:0 withBlock:^NSString * _Nonnull(NSArray * _Nonnull matches, NSUInteger offset, NSString * _Nonnull string) {
-        return [NSString stringWithFormat:@"%ld %@", (long)offset, string];
+    NSString *string = [@"a b c" SE_stringByReplacingPattern:@"[abc]" options:0 withBlock:^NSString * _Nonnull(NSArray<NSString *> * _Nonnull matches, NSRange range, NSString * _Nonnull string) {
+        return [NSString stringWithFormat:@"%ld %@", (long)range.location, string];
     }];
     XCTAssertEqualObjects(@"0 a b c 2 a b c 4 a b c", string);
 }
