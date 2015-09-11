@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSMutableAttributedString (SETokenReplacement)
 
 /**
@@ -61,3 +63,5 @@
 - (NSAttributedString *)SE_attributedStringByReplacingTokensWithValues:(NSDictionary *)replacements;
 
 @end
+
+NS_ASSUME_NONNULL_END
